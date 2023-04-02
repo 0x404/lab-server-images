@@ -32,7 +32,7 @@ RUN  wget -q https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-
 # create py39 envirnoment and install torch
 RUN /root/miniconda3/bin/conda create --name py39 python=3.9 -y \
   && /root/miniconda3/envs/py39/bin/pip install pip -U \
-  && /root/miniconda3/envs/py39/bin/pip install torch==1.8.0+cu111 torchvision==0.9.0+cu111 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html
+  && /root/miniconda3/envs/py39/bin/pip install install torch==1.13.1+cu117 torchvision==0.14.1+cu117 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu117
 
 
 # enable root ssh connet and change root's passwd
