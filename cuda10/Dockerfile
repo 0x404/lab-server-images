@@ -72,4 +72,7 @@ printf "*****************************************************************\\n"\n\
     && chmod 777 /root/.bitsehello \
     && echo "/root/.bitsehello" >> /root/.bashrc
 
+# install bitsrun
+RUN python3 -m pip install --user pipx && python3 -m pipx ensurepath && /root/.local/bin/pipx install bitsrun
+
 ENTRYPOINT /root/startup.sh
