@@ -82,7 +82,10 @@ printf "*****************************************************************\\n"\n\
     && echo "/root/.bitsehello" >> /root/.zshrc
 
 # install bitsrun
-RUN python3 -m pip install --user pipx && python3 -m pipx ensurepath && /root/.local/bin/pipx install bitsrun
+RUN python3 -m pip install --user pipx \
+  && python3 -m pipx ensurepath \
+  && /root/.local/bin/pipx install bitsrun \
+  && echo "export PATH=/root/.local/pipx/venvs/bitsrun/bin:\$PATH" >> /root/.zshrc
 
 # download dotefiels
 RUN cd /root \
