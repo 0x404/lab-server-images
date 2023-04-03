@@ -87,7 +87,7 @@ RUN python3 -m pip install --user pipx && python3 -m pipx ensurepath && /root/.l
 # download dotefiels
 RUN cd /root \
   && git clone https://github.com/0x404/lab-server-images.git \
-  && for file in lab-server-images/dotefiles/*; do mv "$file" "/root/.$(basename "$file")"; done \
+  && for file in lab-server-images/dotfiles/*; do mv "$file" "/root/.$(basename "$file")"; done \
   && rm -rf lab-server-images
 
 # cleanup
