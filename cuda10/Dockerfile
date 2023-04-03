@@ -71,7 +71,7 @@ printf " - Operating System: $(lsb_release -ds)\\n"\n\
 printf " - Kernel Version: $(uname -r)\\n"\n\
 printf " - CUDA Version: $CUDA_VERSION\\n"\n\
 printf " - CONDA Version: $(conda --version)\\n\\n"\n\
-printf "Use \`conda activate py39\` to activate pre-installed envs.\\n"\n\
+printf "Use \`conda activate py37\` to activate pre-installed envs.\\n"\n\
 if [ -n "$VOLUME_MNT" ]; then\n\
 printf "\\nNOTE: The container you are in does not permanently store all data.\\n"\n\
 printf "Please place your important code and data in $VOLUME_MNT, as this directory will be persisted.\\n"\n\
