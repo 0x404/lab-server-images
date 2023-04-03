@@ -21,7 +21,7 @@ docker build --network host -f cuda11.7/Dockerfile -t 0x404/cuda:cu11.7 .
 也可以直接从[Docker Hub](https://hub.docker.com/repository/docker/0x404/cuda/tags?page=1&ordering=last_updated)上拉取镜像，使用如下命令拉取`cuda 11.7`镜像
 
 ```shell
-docker push 0x404/cuda:cu11.7
+docker pull 0x404/cuda:cu11.7
 ```
 
 ## 创建容器
