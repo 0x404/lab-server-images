@@ -1,5 +1,12 @@
 # 实验室GPU服务器镜像
 
+## 镜像功能
+- 方便切换`cuda`版本
+- 内置安装`oh-my-zsh`，默认使用`spaceship`主题，自动安装常用插件
+- 内置安装`miniconda`，并预先下载好`torch`等
+- 内置安装`bitsrun`，方便从命令后登陆校园网
+- 可以灵活配置`SSH`端口
+
 
 ## 创建镜像
 选择需要的`cuda`版本，通过如下命令创建镜像
@@ -8,7 +15,13 @@
 - `-t`指定创建镜像的`tag`
 
 ```shell
-docker build --network host -f cuda10/Dockerfile -t bitse_cu10:latest .
+docker build --network host -f cuda11.7/Dockerfile -t 0x404/cuda:cu11.7 .
+```
+
+也可以直接从[Docker Hub](https://hub.docker.com/repository/docker/0x404/cuda/tags?page=1&ordering=last_updated)上拉取镜像，使用如下命令拉取`cuda 11.7`镜像
+
+```shell
+docker push 0x404/cuda:cu11.7
 ```
 
 ## 创建容器
@@ -17,7 +30,7 @@ docker build --network host -f cuda10/Dockerfile -t bitse_cu10:latest .
 - `--network host`所有容器都直接使用宿主机的网络，方便统一开启代理
 - `--gpus 1`指定GPU，按需指定即可
 - `-v test_container_data:/root/workspace`，将`test_container_data`这个`volume`挂载到容器的`/root/workspace`，持久化存储
-- `-e SSH_PORT=2233`，使用本仓库提供的镜像必须指定SSH的端口号
+- `-e SSH_PORT=2233`，使用本仓库提供的镜像必须指定SSH的端口号，才能正确开启SSH服务
 - `-e VOLUME_MNT=/root/workspace`，使用本仓库提供的镜像，如果挂载`volume`，需要设置该环境变量为挂载的位置
 
 ```shell
@@ -29,7 +42,7 @@ docker run --restart always \
            -v test_container_data:/root/workspace \
            -e SSH_PORT=2233 \
            -e VOLUME_MNT=/root/workspace \
-           bitse_cu10:latest
+           0x404/cuda:cu11.7
 ```
 
 
