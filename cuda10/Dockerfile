@@ -92,3 +92,5 @@ RUN cd /root \
 
 # cleanup
 RUN rm -rf /var/lib/apt/lists/* /tmp/*
+
+ENTRYPOINT /root/.startup.sh
