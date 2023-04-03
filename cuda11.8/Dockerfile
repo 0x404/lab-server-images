@@ -54,10 +54,10 @@ sed -i \"1iexport VOLUME_MNT=\$VOLUME_MNT\" /root/.zshrc\n \
 /bin/zsh \
 " > /root/.startup.sh && chmod 777 /root/.startup.sh
 
-# create py39 envirnoment and install torch
-# RUN /root/miniconda3/bin/conda create --name py39 python=3.9 -y \
-#   && /root/miniconda3/envs/py39/bin/pip install pip -U \
-#   && /root/miniconda3/envs/py39/bin/pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+#create py39 envirnoment and install torch
+RUN /root/miniconda3/bin/conda create --name py39 python=3.9 -y \
+  && /root/miniconda3/envs/py39/bin/pip install pip -U \
+  && /root/miniconda3/envs/py39/bin/pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 
 
 # ssh welcome message
