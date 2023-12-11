@@ -21,5 +21,12 @@ for var in "${!vars_defaults[@]}"; do
   fi
 done
 
+# 将hello脚本插入到zsh中，每次zsh初始化的时候都会显示当前系统信息
+if ! grep -qF -- "/root/.bitse/bitsehello.sh" "$zshrc_file"; then
+  echo "/root/.bitse/bitsehello.sh" >> "$zshrc_file"
+fi
+
 # 启动SSH服务
 service ssh start
+
+exec zsh
