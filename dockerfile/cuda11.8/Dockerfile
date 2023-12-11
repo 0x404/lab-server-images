@@ -33,8 +33,7 @@ RUN  wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.
 	&& rm Miniconda3-latest-Linux-x86_64.sh \
 	&& /root/miniconda3/bin/conda init zsh
 
-ENV PATH /root/miniconda3/bin:$PATH
-
+# install pytorch environmnets for cuda11.8
 RUN /root/miniconda3/bin/conda create --name torch python=3.9 -y \
   && /root/miniconda3/envs/torch/bin/pip install pip -U \
   && /root/miniconda3/envs/torch/bin/pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
