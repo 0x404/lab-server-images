@@ -26,6 +26,16 @@ if ! grep -qF -- "/root/.bitse/bitsehello.sh" "$zshrc_file"; then
   echo "/root/.bitse/bitsehello.sh" >> "$zshrc_file"
 fi
 
+# 将miniconda添加到环境变量中
+MINICONDA_PATH="/root/miniconda3/bin"
+PATH_CODE="if [[ \":\$PATH:\" != *\":$MINICONDA_PATH:\"* ]]; then
+  export PATH=\"$MINICONDA_PATH:\$PATH\"
+fi"
+ZSHRC="${HOME}/.zshrc"
+if ! grep -qF -- "$MINICONDA_PATH" "$ZSHRC"; then
+  echo "$PATH_CODE" >> "$ZSHRC"
+fi
+
 # 启动SSH服务
 service ssh start
 
