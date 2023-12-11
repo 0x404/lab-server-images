@@ -11,7 +11,7 @@ LIGHT_BLUE='\033[1;34m'
 LIGHT_RED='\033[1;31m'
 NC='\033[0m'
 
-printf "${LIGHT_GREEN}======================================================================================================\n${NC}"
+printf "${LIGHT_GREEN}====================================================================================================\n${NC}"
 printf "${YELLOW}Hi, ${MAGENTA}[$SE_USER_NAME]${NC}${YELLOW}! Welcome to ${LIGHT_BLUE}[BITSE GPU Server]${NC}!\n"
 printf "${YELLOW}System information as of ${MAGENTA}[$(date +"%Y-%m-%d %H:%M:%S")]${NC}:\n"
 printf "${GREEN} - Host IP: ${CYAN}$(hostname -I | cut -d " " -f1 )${NC}\n"
@@ -25,4 +25,4 @@ if [ -n "$VOLUME_MNT" ]; then
     printf "\n${LIGHT_RED}NOTE: The container you are in does not permanently store all data.${NC}\n"
     printf "${YELLOW}Please place your important code and data in ${LIGHT_BLUE}$HOME/$VOLUME_MNT${NC}, ${YELLOW}as this directory will be persisted.${NC}\n"
 fi
-printf "${LIGHT_GREEN}======================================================================================================\n${NC}"
+printf "${LIGHT_GREEN}====================================================================================================\n${NC}"
