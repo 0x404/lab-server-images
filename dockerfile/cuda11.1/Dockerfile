@@ -27,17 +27,6 @@ ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get install -y tzdata
 
-# download and install miniconda
-RUN  wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-	&& bash Miniconda3-latest-Linux-x86_64.sh -b \
-	&& rm Miniconda3-latest-Linux-x86_64.sh \
-	&& /root/miniconda3/bin/conda init zsh
-
-# install pytorch environmnets for cuda11.1
-RUN /root/miniconda3/bin/conda create --name torch python=3.9 -y \
-  && /root/miniconda3/envs/torch/bin/pip install pip -U \
-  && /root/miniconda3/envs/torch/bin/pip install torch==1.8.0+cu111 torchvision==0.9.0+cu111 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html
-
 # install oh-my-zsh and spaceship theme
 RUN apt-get update && apt-get install zsh -y && chsh -s /bin/zsh \
   && sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)" -- \
@@ -48,6 +37,17 @@ RUN apt-get update && apt-get install zsh -y && chsh -s /bin/zsh \
         -p https://github.com/zsh-users/zsh-autosuggestions \
         -p https://github.com/zsh-users/zsh-completions \
         -p https://github.com/zsh-users/zsh-syntax-highlighting
+
+# download and install miniconda
+RUN  wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+	&& bash Miniconda3-latest-Linux-x86_64.sh -b \
+	&& rm Miniconda3-latest-Linux-x86_64.sh \
+	&& /root/miniconda3/bin/conda init zsh
+
+# install pytorch environmnets for cuda11.1
+RUN /root/miniconda3/bin/conda create --name torch python=3.9 -y \
+  && /root/miniconda3/envs/torch/bin/pip install pip -U \
+  && /root/miniconda3/envs/torch/bin/pip install torch==1.8.0+cu111 torchvision==0.9.0+cu111 torchaudio==0.8.0 -f https://download.pytorch.org/whl/torch_stable.html
 
 # enable root ssh connet and change root's passwd
 RUN sed -i '/^#*PermitRootLogin/cPermitRootLogin yes' /etc/ssh/sshd_config \
